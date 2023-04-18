@@ -146,7 +146,7 @@ func (e *wrappedError[T]) updatePC(skip int) {
 // factory returns two functions which are a wrapper and an assertor.
 // wrapper can wrap an error and append the error stack.
 // assertor does assertion if it is possible.
-func factory[T any](message string) (w wrapper, a assertor[T]) {
+func factory[T any](message string) (w Wrapper, a Assertor[T]) {
 	w = func(err error) error {
 		if err == nil {
 			return nil
@@ -171,18 +171,18 @@ func factory[T any](message string) (w wrapper, a assertor[T]) {
 
 // Factory must be typed with a generic and gets a message.
 // This returns a wrapper and an assertor that can be used for wrapping and an assertion.
-func Factory[T any](message string) (wrapper, assertor[T]) {
+func Factory[T any](message string) (Wrapper, Assertor[T]) {
 	return factory[T](message)
 }
 
 // Factoryf is same as Factory and the only difference is that it has a format specifier for the message.
-func Factoryf[T any](message string, args ...any) (wrapper, assertor[T]) {
+func Factoryf[T any](message string, args ...any) (Wrapper, Assertor[T]) {
 	return factory[T](fmt.Sprintf(message, args...))
 }
 
 // WithChecker attaches a checker to the given wrapper.
 // Checker is able to check the given error is the type of the wrapper.
-func WithChecker(wrapper *wrapper, size ...int) checker {
+func WithChecker(wrapper *Wrapper, size ...int) Checker {
 	var sz int
 	if len(size) > 0 {
 		sz = size[0]
