@@ -145,4 +145,4 @@ BenchmarkErrors-12                115872             88641 ns/op           33600
 | `errwrap`               |         159575.8 | 72515.8 | 28000 |       300 |
 | `github.com/pkg/errors` |         145235.4 |   82771 | 33600 |       400 |
 
-Processing ability of `errwrap` is improved around 9.87% then `github.com/pkg/errors`.
+Processing ability of `errwrap` is improved around 9.87% than `github.com/pkg/errors`.
